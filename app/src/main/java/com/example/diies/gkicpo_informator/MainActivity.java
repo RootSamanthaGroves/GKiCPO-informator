@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
 
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -57,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+    public void  setViewPager(int fragmentNumber){
+        mViewPager.setCurrentItem(fragmentNumber);
+    }
+
+
+
 
     private void setupViewPager(ViewPager mViewPager) {
 
@@ -67,5 +74,4 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(adapter);
     }
 }
-
 
