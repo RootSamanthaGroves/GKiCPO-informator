@@ -31,73 +31,25 @@
     </android.support.v4.view.ViewPager>
 
     <!--2-->
-    <android.support.design.widget.AppBarLayout
+    <RelativeLayout
+        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom">
 
-        <android.support.v4.view.ViewPager
-
-            android:id="@+id/container2"
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottomNav_ViewBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorWhite"
+            app:menu="@menu/botton_navigation_menu">
 
-        </android.support.v4.view.ViewPager>
+        </android.support.design.widget.BottomNavigationView>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarBottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="100">
-
-                <ImageButton
-                    android:id="@+id/ic_showmore"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:background="@color/colorWhite"
-                    android:src="@drawable/ic_center_focus_weak_black" />
-
-                <ImageButton
-                    android:id="@+id/ic_search"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:background="@color/colorWhite"
-                    android:src="@drawable/ic_search_black" />
-
-                <ImageButton
-                    android:id="@+id/ic_siteur"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:background="@color/colorWhite"
-                    android:src="@drawable/image" />
-
-                <ImageButton
-                    android:id="@+id/ic_autor"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:background="@color/colorWhite"
-                    android:src="@drawable/ic_school_black" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:background="@color/colorWhite"
-                    android:src="@drawable/ic_account_circle_black" />
-            </LinearLayout>
-
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+    </RelativeLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -18,6 +18,12 @@
         </activity>
 
         <activity android:name=".ShowInfoActivity"></activity>
+        <activity android:name=".ActivityAutor"></activity>
+        <activity android:name=".ActivityLike"></activity>
+        <activity android:name=".ActivitySiteUr"></activity>
+        <activity android:name=".ActivitySearchElement"></activity>
+
+
     </application>
 
 </manifest>

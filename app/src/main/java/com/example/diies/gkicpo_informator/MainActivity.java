@@ -1,5 +1,6 @@
 package com.example.diies.gkicpo_informator;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
@@ -33,30 +34,52 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_search_black);
         tabLayout.getTabAt(2).setIcon(R.drawable.image);
 
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.toolbarBottom);
-//        BottomNavigationViewHelper.disableShiftNode(bottomNavigationView);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_ViewBar);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+
 //                    case R.id.ic_showmore:
+//                        Intent intent0 = new Intent(MainActivity.this, ShowInfoActivity.class);
+//                        startActivity(intent0);
 //                        break;
-//                    case R.id.ic_search:
-//                        break;
-//                    case R.id.ic_autor:
-//                        break;
-//                    case R.id.ic_siteur:
-//                        break;
-//                }
-//
-//                return false;
-//            }
+                    case R.id.ic_back:
+//                        Intent intent1 = new Intent(MainActivity.this, ShowInfoActivity.class);
+//                        startActivity(intent1);
+                        break;
+                    case R.id.ic_like:
+                        Intent intent2 = new Intent(MainActivity.this, ActivityLike.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.ic_search:
+                        Intent intent3 = new Intent(MainActivity.this, ActivitySearchElement.class);
+                        startActivity(intent3);
+
+                        break;
+                    case R.id.ic_autor:
+                        Intent intent4 = new Intent(MainActivity.this, ActivityAutor.class);
+                        startActivity(intent4);
+                        break;
+                    case R.id.ic_siteur:
+                        Intent intent5 = new Intent(MainActivity.this, ActivitySiteUr.class);
+                        startActivity(intent5);
+                        break;
+                }
+
+
+                return false;
+
+            }
 
 
 
 
-
+});
 }
     public void  setViewPager(int fragmentNumber){
         mViewPager.setCurrentItem(fragmentNumber);

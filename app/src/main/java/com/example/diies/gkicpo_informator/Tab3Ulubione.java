@@ -21,7 +21,7 @@ public class Tab3Ulubione extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ulubione,container,false);
+        View view = inflater.inflate(R.layout.activity_like,container,false);
         btnTEST = (Button) view.findViewById(R.id.btnTEST);
 
         btnTEST.setOnClickListener(new View.OnClickListener() {

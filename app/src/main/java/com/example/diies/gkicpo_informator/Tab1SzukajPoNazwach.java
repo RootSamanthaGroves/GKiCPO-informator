@@ -21,7 +21,7 @@ public class Tab1SzukajPoNazwach extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_szukajponazwie,container,false);
+        View view = inflater.inflate(R.layout.activity_searchelement,container,false);
         btnTEST = (Button) view.findViewById(R.id.btnTEST);
 
         btnTEST.setOnClickListener(new View.OnClickListener() {

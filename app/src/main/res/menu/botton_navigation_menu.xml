@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu     xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <item
+        android:id="@+id/ic_back"
+        android:icon="@drawable/ic_arrow_back_black_24dp"
+        android:title="back"></item>
+    <!--<item-->
+        <!--android:id="@+id/ic_showmore"-->
+        <!--android:icon="@drawable/ic_find_in_page_black_24dp"-->
+        <!--android:title="wyświetl więcej"></item>-->
+    <item
+    android:id="@+id/ic_search"
+    android:icon="@drawable/ic_search_black"
+    android:title="search"></item>
+    <item
+    android:id="@+id/ic_like"
+    android:icon="@drawable/image"
+    android:title="like"></item>
+
+    <item
+    android:id="@+id/ic_siteur"
+    android:icon="@drawable/ic_school_black"
+    android:title="site UR"></item>
+
+    <item
+    android:id="@+id/ic_autor"
+    android:icon="@drawable/ic_account_circle_black"
+    android:title="autor">
+    </item>
+
+</menu>
