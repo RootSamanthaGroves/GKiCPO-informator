@@ -1,5 +1,6 @@
 package com.example.diies.gkicpo_informator;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 /**
@@ -15,6 +17,17 @@ import android.view.MenuItem;
  */
 
 public class ShowInfoActivity extends AppCompatActivity {
+
+
+
+    // get some fake data
+    //private static final String TEST_URL                 = "http://jsonplaceholder.typicode.com/comments";
+    private static final String TEST_URL                   = "http://192.168.1.200:2020/equipment/all";
+    private static final String ACTION_FOR_INTENT_CALLBACK = "THIS_IS_A_UNIQUE_KEY_WE_USE_TO_COMMUNICATE";
+
+    ProgressDialog progress;
+    private TextView ourTextView;
+
 
     private static final String TAG = "Druga aktuwność";
     @Override
@@ -71,4 +84,9 @@ public class ShowInfoActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
 }

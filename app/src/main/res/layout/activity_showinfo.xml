@@ -34,21 +34,24 @@
         android:layout_height="wrap_content"
         android:src="@drawable/image" />
 
-
-    <TextView
-        android:id="@+id/textView4"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/myScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextViewdsfdsfdsfsdfsdfsdfffdfsf
-dfsdfsdfsdfdsf
-sdf
-sdf
-dsf
-sdfsd
-dfsdfsd
-dsf
-"
-        android:layout_weight="1.04" />
+        >
+
+        <!-- fill the screen with a textview. the app will write text into it. -->
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/myTextView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+
+        android:text="@string/default_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <RelativeLayout
         android:id="@+id/bottomBar"

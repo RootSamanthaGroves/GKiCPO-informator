@@ -12,7 +12,7 @@
         android:layout_alignBottom="@+id/editText2"
         android:layout_toRightOf="@+id/editText2"
         android:layout_toEndOf="@+id/editText2"
-        android:layout_marginLeft="39dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginStart="39dp" />
 
     <EditText
@@ -22,29 +22,27 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="50dp"
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginTop="53dp"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/btnTEST"
-        android:layout_toStartOf="@+id/btnTEST" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnTEST"
-        android:text="tab2"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/myScrollView"
+       android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <!-- fill the screen with a textview. the app will write text into it. -->
+        <TextView
+            android:id="@+id/myTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/default_text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/bottomBar"
@@ -65,4 +63,6 @@
         </android.support.design.widget.BottomNavigationView>
 
     </RelativeLayout>
+
+
 </RelativeLayout>
