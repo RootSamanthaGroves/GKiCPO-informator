@@ -16,8 +16,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.client.methods.HttpGet;
 
@@ -28,11 +30,13 @@ public class Tab1SzukajPoNazwach extends Fragment {
 
     private ImageButton btnSearch;
 
+   private String idOfEqu= "all";
+    EditText mEdit;
+
     // get some fake data
     //private static final String TEST_URL                 = "http://jsonplaceholder.typicode.com/comments";
-    private static final String TEST_URL                   = "http://192.168.1.200:2020/equipment/all";
+    private static final String TEST_URL = "http://192.168.1.200:2020/equipment/";
     private static final String ACTION_FOR_INTENT_CALLBACK = "THIS_IS_A_UNIQUE_KEY_WE_USE_TO_COMMUNICATE";
-
 
 
     ProgressDialog progress;
@@ -42,18 +46,21 @@ public class Tab1SzukajPoNazwach extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_searchelement,container,false);
-//        btnSearch = (ImageButton) view.findViewById(R.id.imageButton2);
-//
-//        btnSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//                Toast.makeText(getActivity(), "dsd", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+        View view = inflater.inflate(R.layout.activity_searchelement, container, false);
+        btnSearch = (ImageButton) view.findViewById(R.id.imageButton2);
+        mEdit = (EditText) view.findViewById(R.id.editText2);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 idOfEqu = (String) mEdit.getText().toString();
+                Log.d("id", idOfEqu);
+                mEdit.setText("");
+                getContent();
+
+                Toast.makeText(getActivity(), " id", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
         return view;
@@ -66,20 +73,20 @@ public class Tab1SzukajPoNazwach extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ourTextView = (TextView)getActivity().findViewById(R.id.myTextView);
+        ourTextView = (TextView) getActivity().findViewById(R.id.myTextView);
         getContent();
     }
 
     private void getContent() {
         // the request
         try {
-            HttpGet httpGet = new HttpGet(new URI(TEST_URL));
+
+            HttpGet httpGet = new HttpGet(new URI(TEST_URL+idOfEqu));
             RestTask task = new RestTask(getActivity(), ACTION_FOR_INTENT_CALLBACK);
             task.execute(httpGet);
             progress = ProgressDialog.show(getActivity(), "Getting Data ...", "Waiting For Results...", true);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }
 

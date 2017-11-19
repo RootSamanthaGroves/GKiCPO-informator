@@ -15,6 +15,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="39dp" />
 
+    <TextView
+        android:id="@+id/tvtest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageButton2" />
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
