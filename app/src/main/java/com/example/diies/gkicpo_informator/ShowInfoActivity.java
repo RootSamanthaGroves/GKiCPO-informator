@@ -1,7 +1,7 @@
 package com.example.diies.gkicpo_informator;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +9,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.diies.gkicpo_informator.model.Equipment;
+
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 
 /**
@@ -20,22 +28,39 @@ public class ShowInfoActivity extends AppCompatActivity {
 
 
 
-    // get some fake data
-    //private static final String TEST_URL                 = "http://jsonplaceholder.typicode.com/comments";
-    private static final String TEST_URL                   = "http://192.168.1.200:2020/equipment/all";
-    private static final String ACTION_FOR_INTENT_CALLBACK = "THIS_IS_A_UNIQUE_KEY_WE_USE_TO_COMMUNICATE";
+    final static String url = "http://192.168.1.200:2020/equipment/name/";
+    public static String codeFormat;
+    public static String codeContent;
 
-    ProgressDialog progress;
-    private TextView ourTextView;
 
+ 
+    private TextView tvNazwa;
+    private ImageView ivZdjecie;
+    private TextView tvOpis;
+    private ImageButton btnTEST;
 
     private static final String TAG = "Druga aktuwność";
+
     @Override
-    protected  void onCreate(@Nullable Bundle savedInstanceState){
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showinfo);
         Log.d(TAG, "onCreate: Start 2 ");
 
+        tvNazwa = (TextView) this.findViewById(R.id.tvNazwa);
+        tvOpis = (TextView) this.findViewById(R.id.tvOpis);
+        tvNazwa.setText(codeContent);
+
+        btnTEST = (ImageButton) this.findViewById(R.id.imageButton3);
+        btnTEST.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectItem();
+//                Toast.makeText(getActivity(), "Informacje", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), ShowInfoActivity.class);
+//                startActivity(intent);
+            }
+        });
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_ViewBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -57,7 +82,7 @@ public class ShowInfoActivity extends AppCompatActivity {
 //                        break;
                     case R.id.ic_like:
                         Intent intent2 = new Intent(ShowInfoActivity.this, ActivityLike.class);
-                       startActivity(intent2);
+                        startActivity(intent2);
                         break;
                     case R.id.ic_search:
                         Intent intent3 = new Intent(ShowInfoActivity.this, ActivitySearchElement.class);
@@ -85,8 +110,57 @@ public class ShowInfoActivity extends AppCompatActivity {
 
     }
 
+    public void selectItem() {
+
+        tvNazwa.setText(codeContent);
+        System.out.println(codeContent);
+        new HttpRequestTask().execute();
+
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 
 
 
+    private class HttpRequestTask  extends AsyncTask<Void, Void, Equipment> {
+        @Override
+        protected Equipment doInBackground(Void... params) {
+            try {
 
+               String urlAll = url +tvNazwa.getText().toString();
+                System.out.println(tvNazwa.getText().toString());
+//               String urlAll = url +"Skaner laserowy do pomiarów scenerii 3D Faro Focus";
+                System.out.println(urlAll);
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                Equipment equipment = (Equipment) restTemplate.getForObject(urlAll, Equipment.class);
+                return equipment;
+            } catch (Exception e) {
+                Log.e("conection with rest", e.getMessage(), e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Equipment equipment) {
+
+
+            TextView nazwa = (TextView) findViewById(R.id.tvNazwa);
+            TextView opis = (TextView) findViewById(R.id.tvOpis);
+            ImageView image = (ImageView) findViewById(R.id.ivPhoto) ;
+//            TextView greetingContentText = (TextView) findViewById(R.id.content_value);
+            nazwa.setText(String.valueOf(equipment.getName()));
+            opis.setText(String.valueOf(equipment.getDescription()));
+
+        }
+    }
 }
