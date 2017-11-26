@@ -29,11 +29,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="Zaskanuj QR-code"
-        android:layout_above="@+id/scanCode"
+        android:layout_below="@+id/scanCode"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="84dp" />
+        android:text="Zaskanuj QR-code"
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/btnTEST"

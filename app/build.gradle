@@ -18,6 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        pickFirst  'META-INF/license.txt'
+        pickFirst  'META-INF/notice.txt'
+        pickFirst  'META-INF/LICENSE'
+    }
 }
 
 dependencies {
@@ -38,4 +44,8 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.2'
     compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     compile 'com.j256.ormlite:ormlite-android:4.48'
+
+//    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
 }

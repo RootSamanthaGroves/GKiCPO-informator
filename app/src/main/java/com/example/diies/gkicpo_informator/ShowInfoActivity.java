@@ -1,6 +1,8 @@
 package com.example.diies.gkicpo_informator;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,13 +29,11 @@ import org.springframework.web.client.RestTemplate;
 public class ShowInfoActivity extends AppCompatActivity {
 
 
-
-    final static String url = "http://192.168.1.200:2020/equipment/name/";
+    final static String url = "https://app-informacje.herokuapp.com/equipment/name/";
     public static String codeFormat;
     public static String codeContent;
 
 
- 
     private TextView tvNazwa;
     private ImageView ivZdjecie;
     private TextView tvOpis;
@@ -130,16 +130,16 @@ public class ShowInfoActivity extends AppCompatActivity {
     }
 
 
-
-    private class HttpRequestTask  extends AsyncTask<Void, Void, Equipment> {
+    private class HttpRequestTask extends AsyncTask<Void, Void, Equipment> {
         @Override
         protected Equipment doInBackground(Void... params) {
             try {
 
-               String urlAll = url +tvNazwa.getText().toString();
-                System.out.println(tvNazwa.getText().toString());
-//               String urlAll = url +"Skaner laserowy do pomiarów scenerii 3D Faro Focus";
-                System.out.println(urlAll);
+                String urlAll = url + tvNazwa.getText().toString();
+                System.out.println("qr code "+tvNazwa.getText().toString());
+//             String urlAll = url +"name";
+
+//        System.out.println(urlAll);
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 Equipment equipment = (Equipment) restTemplate.getForObject(urlAll, Equipment.class);
@@ -156,11 +156,34 @@ public class ShowInfoActivity extends AppCompatActivity {
 
             TextView nazwa = (TextView) findViewById(R.id.tvNazwa);
             TextView opis = (TextView) findViewById(R.id.tvOpis);
-            ImageView image = (ImageView) findViewById(R.id.ivPhoto) ;
+//            ImageView image = (ImageView) findViewById(R.id.ivPhoto);
 //            TextView greetingContentText = (TextView) findViewById(R.id.content_value);
+//            System.out.println(equipment.getImage().toString());
             nazwa.setText(String.valueOf(equipment.getName()));
             opis.setText(String.valueOf(equipment.getDescription()));
 
+//            Bitmap bmp = BitmapFactory.decodeByteArray(equipment.getImage(), 0, equipment.getImage().length);
+            ImageView image = (ImageView) findViewById(R.id.ivPhoto);
+
+
+
+//            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, imageb.getWidth(),
+//                    imageb.getHeight(), false));
+
+          //  ImageView image = (ImageView) findViewById(android.R.id.icon);
+//            imageTile, 0, imageTile.length
+            Bitmap bMap = BitmapFactory.decodeByteArray(equipment.getImage(), 0,equipment.getImage().length);
+            image.setImageBitmap(bMap);
+
+//            try {
+//                image.setImageBitmap(encodeAsBitmap(equipment.getName()));
+//            } catch (WriterException e) {
+//                e.printStackTrace();
+//            }
+
         }
+
+
+
     }
 }

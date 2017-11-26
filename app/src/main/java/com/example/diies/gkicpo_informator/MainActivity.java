@@ -1,19 +1,21 @@
 package com.example.diies.gkicpo_informator;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.google.zxing.integration.android.*;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainAktywnosc";
     private SekcjaStatePagerAdapter mSekcjaStatePagerAdapter;
     private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new Tab1SzukajPoNazwach());
         adapter.addFragment(new Tab3Ulubione());
         mViewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanningResult = com.google.zxing.integration.android.IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        ShowInfoActivity.codeContent = scanningResult.getContents();
+        ShowInfoActivity.codeFormat = scanningResult.getFormatName();
+
     }
 }
 

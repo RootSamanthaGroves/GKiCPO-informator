@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageButton
@@ -28,7 +30,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="all"
         android:layout_marginTop="50dp"
 
         android:layout_centerHorizontal="true" />
@@ -38,18 +40,29 @@
         android:id="@+id/myScrollView"
        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="200px"
+        tools:context=".List" >
+
+
+
+            <TextView
+                android:id="@+id/myTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/default_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
         <!-- fill the screen with a textview. the app will write text into it. -->
-        <TextView
-            android:id="@+id/myTextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/default_text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+
 
     </ScrollView>
+
+
+
+
 
     <RelativeLayout
         android:id="@+id/bottomBar"
