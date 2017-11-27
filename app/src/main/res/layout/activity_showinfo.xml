@@ -8,8 +8,10 @@
 
     <ImageView
         android:id="@+id/ivPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="80dp"
         android:layout_above="@+id/textView"
         android:layout_alignEnd="@+id/textView"
         android:layout_alignLeft="@+id/textView"
@@ -17,13 +19,30 @@
         android:layout_alignStart="@+id/textView"
         android:layout_below="@+id/imageButton"
 
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
         android:src="@drawable/ic_find_in_page_black_24dp" />
+
+
+
+    <ScrollView
+        android:id="@+id/myScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- fill the screen with a textview. the app will write text into it. -->
+
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image" />
 
     <TextView
         android:id="@+id/tvNazwa"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="80dp"
 
         android:text="@string/default_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -36,33 +55,36 @@
 
     <!--</android.support.v4.view.ViewPager>-->
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/image" />
+<!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp">-->
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/myScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+    <!--<TextView-->
+        <!--android:id="@+id/tvOpis"-->
 
-        <!-- fill the screen with a textview. the app will write text into it. -->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:text="@string/default_text"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
+<!--</ScrollView>-->
+
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/tvOpis"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"/>
     </ScrollView>
-
-
-    <TextView
-        android:id="@+id/tvOpis"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-
-        android:text="@string/default_text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <RelativeLayout
         android:id="@+id/bottomBar"
+        android:layout_marginBottom="0dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

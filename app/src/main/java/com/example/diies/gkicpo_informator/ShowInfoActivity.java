@@ -156,30 +156,13 @@ public class ShowInfoActivity extends AppCompatActivity {
 
             TextView nazwa = (TextView) findViewById(R.id.tvNazwa);
             TextView opis = (TextView) findViewById(R.id.tvOpis);
-//            ImageView image = (ImageView) findViewById(R.id.ivPhoto);
-//            TextView greetingContentText = (TextView) findViewById(R.id.content_value);
-//            System.out.println(equipment.getImage().toString());
             nazwa.setText(String.valueOf(equipment.getName()));
             opis.setText(String.valueOf(equipment.getDescription()));
-
-//            Bitmap bmp = BitmapFactory.decodeByteArray(equipment.getImage(), 0, equipment.getImage().length);
             ImageView image = (ImageView) findViewById(R.id.ivPhoto);
-
-
-
-//            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, imageb.getWidth(),
-//                    imageb.getHeight(), false));
-
-          //  ImageView image = (ImageView) findViewById(android.R.id.icon);
-//            imageTile, 0, imageTile.length
             Bitmap bMap = BitmapFactory.decodeByteArray(equipment.getImage(), 0,equipment.getImage().length);
             image.setImageBitmap(bMap);
 
-//            try {
-//                image.setImageBitmap(encodeAsBitmap(equipment.getName()));
-//            } catch (WriterException e) {
-//                e.printStackTrace();
-//            }
+
 
         }
 
