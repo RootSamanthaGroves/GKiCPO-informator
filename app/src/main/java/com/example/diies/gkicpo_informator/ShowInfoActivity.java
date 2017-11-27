@@ -51,11 +51,14 @@ public class ShowInfoActivity extends AppCompatActivity {
         tvOpis = (TextView) this.findViewById(R.id.tvOpis);
         tvNazwa.setText(codeContent);
 
+        if(codeContent!= null){
+            selectItem();
+        }
         btnTEST = (ImageButton) this.findViewById(R.id.imageButton3);
         btnTEST.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectItem();
+
 //                Toast.makeText(getActivity(), "Informacje", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getActivity(), ShowInfoActivity.class);
 //                startActivity(intent);

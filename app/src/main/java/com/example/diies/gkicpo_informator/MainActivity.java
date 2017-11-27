@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.google.zxing.integration.android.*;
+import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainAktywnosc";
@@ -104,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
         IntentResult scanningResult = com.google.zxing.integration.android.IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         ShowInfoActivity.codeContent = scanningResult.getContents();
         ShowInfoActivity.codeFormat = scanningResult.getFormatName();
+        if( ShowInfoActivity.codeContent != null){
+            Intent intent3 = new Intent(MainActivity.this, ShowInfoActivity.class);
+            startActivity(intent3);
+
+        }
 
     }
 }

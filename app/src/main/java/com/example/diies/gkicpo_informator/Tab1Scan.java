@@ -4,7 +4,6 @@ package com.example.diies.gkicpo_informator;
  * Created by DiiES on 2017-10-30.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 
@@ -55,9 +53,9 @@ public class Tab1Scan extends Fragment {
             @Override
             public void onClick(View view) {
 //                selectItem();
-                Toast.makeText(getActivity(), "Informacje", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), ShowInfoActivity.class);
-                startActivity(intent);
+//                Toast.makeText(getActivity(), "Informacje", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity(), ShowInfoActivity.class);
+//                startActivity(intent);
             }
         });
 
