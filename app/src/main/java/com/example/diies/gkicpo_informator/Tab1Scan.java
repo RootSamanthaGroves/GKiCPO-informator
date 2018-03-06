@@ -21,8 +21,7 @@ public class Tab1Scan extends Fragment {
     private static final String Tag = "Tab Scan";
     private Button btnTEST;
     private ImageButton scanQR;
-//    public static String codeFormat;
-//    public static String codeContent;
+
     public static String text = "";
     private TextView tvtest;
 
@@ -48,16 +47,7 @@ public class Tab1Scan extends Fragment {
 
             }
         });
-        btnTEST = (Button) view.findViewById(R.id.btnTEST);
-        btnTEST.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                selectItem();
-//                Toast.makeText(getActivity(), "Informacje", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getActivity(), ShowInfoActivity.class);
-//                startActivity(intent);
-            }
-        });
+
 
         return view;
     }

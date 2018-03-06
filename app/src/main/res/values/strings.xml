@@ -1,5 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GKiCPO-informator</string>
     <string name="default_text" />
-
-    </resources>
+    <string name="app_header">Multilingual \"Hello\"</string>
+    <string name="hint">Tap language name to show its \"Hello\" phrase.</string>
+    <string-array name="languages">
+        <item>Skaner laserowy do pomiarów scenerii 3D Faro Focus 3D</item>
+        <item>Zestaw do prowadzenia badań Human-Computer- Interaction</item>
+        <item>Eye Tracker SMI RedEye500</item>
+        <item>Stanowisko do badań sygnałów biometrycznych</item>
+        <item>Stanowisko ultraszybkich pomiarów sekwencji obrazów z uwzględnieniem zmian termicznych.</item>
+        <item>Stanowisko wieloprocesorowego systemu klasyfikacji i analizy sygnałów fizycznych czasu rzeczywistego.</item>
+        <item>Stanowisko restytuowania scenerii 3D z wykorzystaniem obrazów interferencyjnych</item>
+        <item>Zespół modułowych kontrolerów przemysłowych w sterowaniu rzeczywistych procesów technologicznych</item>
+        <item>Stanowisko modelowania i generowania siatki w geometrii w warunkach systemu czasu rzeczywistego</item>
+    </string-array>
+    <string-array name="hello_phrases">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+</resources>

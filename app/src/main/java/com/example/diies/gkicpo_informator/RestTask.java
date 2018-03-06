@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -27,6 +28,7 @@ public class RestTask extends AsyncTask<HttpUriRequest, Void, String>
     private Context mContext;
     private HttpClient mClient;
     private String mAction;
+    ProgressBar progress ;
 
     public RestTask(Context context, String action) {
         mContext = context;
@@ -46,7 +48,7 @@ public class RestTask extends AsyncTask<HttpUriRequest, Void, String>
             HttpUriRequest request = params[0];
             HttpResponse serverResponse = mClient.execute(request);
             BasicResponseHandler handler = new BasicResponseHandler();
-            return handler.handleResponse(serverResponse);
+                  return handler.handleResponse(serverResponse);
         }
         catch (Exception e) {
             // TODO handle this properly

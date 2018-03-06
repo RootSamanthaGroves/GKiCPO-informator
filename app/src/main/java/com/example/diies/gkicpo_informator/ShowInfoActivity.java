@@ -1,5 +1,6 @@
 package com.example.diies.gkicpo_informator;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,6 +34,8 @@ public class ShowInfoActivity extends AppCompatActivity {
     public static String codeFormat;
     public static String codeContent;
 
+
+    ProgressDialog progress;
 
     private TextView tvNazwa;
     private ImageView ivZdjecie;
@@ -134,18 +137,20 @@ public class ShowInfoActivity extends AppCompatActivity {
 
 
     private class HttpRequestTask extends AsyncTask<Void, Void, Equipment> {
+        private ProgressDialog pd;
         @Override
         protected Equipment doInBackground(Void... params) {
             try {
-
+//               progress = ProgressDialog.show();
                 String urlAll = url + tvNazwa.getText().toString();
                 System.out.println("qr code "+tvNazwa.getText().toString());
 //             String urlAll = url +"name";
 
-//        System.out.println(urlAll);
+
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 Equipment equipment = (Equipment) restTemplate.getForObject(urlAll, Equipment.class);
+
                 return equipment;
             } catch (Exception e) {
                 Log.e("conection with rest", e.getMessage(), e);
@@ -166,10 +171,11 @@ public class ShowInfoActivity extends AppCompatActivity {
             image.setImageBitmap(bMap);
 
 
+        }
 
         }
 
 
 
-    }
+
 }

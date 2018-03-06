@@ -8,6 +8,12 @@ public class Equipment {
 
     private long id;
     private String name;
+
+    @Override
+    public String toString() {
+        return  name ;
+    }
+
     private String description;
     private byte[] image;
 

@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.diies.gkicpo_informator.model.Equipment;
@@ -26,7 +28,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Tab1SzukajPoNazwach extends Fragment {
@@ -34,31 +35,27 @@ public class Tab1SzukajPoNazwach extends Fragment {
     private ImageButton btnSearch;
     private String idOfEqu = "all";
     EditText mEdit;
-    TextView greetingIdText;
+//    TextView greetingIdText;
     private static String path = "id/1";
     private static String url = "https://app-informacje.herokuapp.com/equipment/";
     private String urlAll = url + path;
 
+    private ListView lvLanguages;
+    private String[] languages;
+    private String[] helloPhrases;
+
+    private List<Equipment> equipmentsList = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_searchelement, container, false);
 
-
+        lvLanguages = (ListView) view.findViewById(R.id.lvLanguages);
         btnSearch = (ImageButton) view.findViewById(R.id.imageButton2);
         mEdit = (EditText) view.findViewById(R.id.editText2);
-        greetingIdText = (TextView) view.findViewById(R.id.tvtest);
-//        list = (ListView) this.findViewById(R.id.);
-//
-//        String cars[] = {"Mercedes", "Fiat", "Ferrari", "Aston Martin", "Lamborghini", "Skoda", "Volkswagen", "Audi", "Citroen"};
-//
-//        ArrayList<String> carL = new ArrayList<String>();
-//        carL.addAll( Arrays.asList(cars) );
-//
-//        adapter = new ArrayAdapter<String>(this, R.layout.row, carL);
+//        greetingIdText = (TextView) view.findViewById(R.id.tvtest);
 
-//        list.setAdapter(adapter);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,11 +65,8 @@ public class Tab1SzukajPoNazwach extends Fragment {
                 new HttpRequestTask().execute();
 
                 Toast.makeText(getActivity(), " id", Toast.LENGTH_SHORT).show();
-
             }
-
         });
-
 
         return view;
     }
@@ -100,13 +94,14 @@ public class Tab1SzukajPoNazwach extends Fragment {
                 Equipment[] equipmentsArray = responseEntity.getBody();
                 MediaType contentType = responseEntity.getHeaders().getContentType();
                 HttpStatus statusCode = responseEntity.getStatusCode();
-                List<Equipment> equipmentsList = new ArrayList<>();
+//                List<Equipment> equipmentsList = new ArrayList<>();
                 for (Equipment e : equipmentsArray) {
                     equipmentsList.add(e);
+                    System.out.println(e.toString());
                 }
                 return equipmentsList;
             } catch (Exception e) {
-                Log.e("MainActivity", e.getMessage(), e);
+                Log.e("Pobieranie danych", e.getMessage(), e);
             }
             return null;
         }
@@ -114,85 +109,32 @@ public class Tab1SzukajPoNazwach extends Fragment {
         @Override
         protected void onPostExecute(List<Equipment> equipments) {
 
+//            if (equipments.get(0).getName() == null) {
+//                greetingIdText.setText("null");
+//            }
+//            greetingIdText.setText(String.valueOf(equipments.get(0).getName()));
 
-            String cars[] = {"Mercedes", "Fiat", "Ferrari", "Aston Martin", "Lamborghini", "Skoda", "Volkswagen", "Audi", "Citroen"};
 
-            ArrayList<String> carL = new ArrayList<String>();
-            carL.addAll(Arrays.asList(cars));
+            lvLanguages.setAdapter(new ArrayAdapter<Equipment>(
+                    getActivity().getApplicationContext(),
+                    android.R.layout.simple_list_item_1,
+                    equipmentsList));
 
-            if (equipments.get(0).getName() == null) {
-                greetingIdText.setText("null");
-            }
-            greetingIdText.setText(String.valueOf(equipments.get(0).getName()));
+            lvLanguages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            helloPhrases[pos],
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            });
         }
     }
-
-
-    //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-//    /**
-//     * any code to access activity fields must be handled in this method.
-//     */
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        ourTextView = (TextView) getActivity().findViewById(R.id.myTextView);
-//        getContent();
-//    }
-//
-//    private void getContent() {
-//        // the request
-//        try {
-//
-//            HttpGet httpGet = new HttpGet(new URI(TEST_URL+idOfEqu));
-//            RestTask task = new RestTask(getActivity(), ACTION_FOR_INTENT_CALLBACK);
-//            task.execute(httpGet);
-//
-////            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-////            Feature feature = (Feature) restTemplate.getForObject(url, Feature.class);
-//            progress = ProgressDialog.show(getActivity(), "Getting Data ...", "Waiting For Results...", true);
-//
-//        } catch (Exception e) {
-//            Log.e(TAG, e.getMessage());
-//        }
-//
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        getActivity().registerReceiver(receiver, new IntentFilter(ACTION_FOR_INTENT_CALLBACK));
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        getActivity().unregisterReceiver(receiver);
-//    }
-//
-//    /**
-//     * Our Broadcast Receiver. We get notified that the data is ready, and then we
-//     * put the content we receive (a string) into the TextView.
-//     */
-//    private BroadcastReceiver receiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            // clear the progress indicator
-//            if (progress != null) {
-//                progress.dismiss();
-//            }
-//            String response = intent.getStringExtra(RestTask.HTTP_RESPONSE);
-//
-//            ourTextView.setText(response);
-//
-//
-//
-//
-//            Log.i(TAG, "RESPONSE = " + response);
-//            //
-//            // my old json code was here. this is where you would parse it.
-//            //
-//        }
-//    };
-
-
 }
+
+
+
+
+

@@ -1,6 +1,7 @@
 package com.example.diies.gkicpo_informator;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * Created by DiiES on 2017-11-02.
@@ -15,12 +21,21 @@ import android.view.MenuItem;
 
 public class ActivitySearchElement extends AppCompatActivity {
 
+    private ListView lvLanguages;
+    private String[] languages;
+    private String[] helloPhrases;
         private static final String TAG = "Szukaj";
 
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_searchelement);
+
+
+            lvLanguages = (ListView) findViewById(R.id.lvLanguages);
+            initResources();
+            initLanguagesListView();
+
             Log.d(TAG, "onCreate: Start 2 ");
 
             BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_ViewBar);
@@ -70,5 +85,29 @@ public class ActivitySearchElement extends AppCompatActivity {
             });
 
         }
+
+
+    private void initResources() {
+        Resources res = getResources();
+        languages = res.getStringArray(R.array.languages);
+        helloPhrases = res.getStringArray(R.array.hello_phrases);
     }
+
+    private void initLanguagesListView() {
+        lvLanguages.setAdapter(new ArrayAdapter<String>(
+                getApplicationContext(),
+                android.R.layout.simple_list_item_1,
+                languages));
+
+        lvLanguages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+                Toast.makeText(getApplicationContext(),
+                        helloPhrases[pos],
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+}
+
 
