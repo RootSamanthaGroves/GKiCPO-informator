@@ -18,33 +18,27 @@
         android:layout_alignRight="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:layout_below="@+id/imageButton"
-
         android:layout_marginTop="0dp"
         android:src="@drawable/ic_find_in_page_black_24dp" />
 
 
-
-    <ProgressBar
-        android:id="@+id/progressBar_cyclic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginRight="150dp"
-        android:minHeight="50dp"
-        android:minWidth="50dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progressBar_cyclic"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="150dp"-->
+        <!--android:layout_marginRight="150dp"-->
+        <!--android:minHeight="50dp"-->
+        <!--android:minWidth="50dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
 
 
     <ScrollView
         android:id="@+id/myScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <!-- fill the screen with a textview. the app will write text into it. -->
-
     </ScrollView>
 
     <ImageButton
@@ -57,31 +51,10 @@
         android:id="@+id/tvNazwa"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-
         android:text="@string/default_text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <!--<android.support.v4.view.ViewPager-->
 
-    <!--android:id="@+id/container"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="59dp">-->
-
-    <!--</android.support.v4.view.ViewPager>-->
-
-<!--<ScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200dp">-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/tvOpis"-->
-
-        <!--android:layout_width="200dp"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:text="@string/default_text"-->
-        <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
-
-<!--</ScrollView>-->
 
     <ScrollView
         android:id="@+id/SCROLLER_ID"
@@ -96,6 +69,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"/>
     </ScrollView>
+
     <RelativeLayout
         android:id="@+id/bottomBar"
         android:layout_marginBottom="0dp"

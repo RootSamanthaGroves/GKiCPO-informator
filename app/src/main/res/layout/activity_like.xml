@@ -5,14 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnTEST"
-        android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:text="tab3"
-        android:layout_marginTop="59dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:id="@+id/ivPhotoEq"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_above="@+id/tvFromFile"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_find_in_page_black_24dp" />
+
+    <TextView
+        android:id="@+id/tvFromFile"
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_above="@+id/SCROLLER_ID"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="TextView" />
+
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_above="@+id/bottomBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:id="@+id/tvOpis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0" />
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/bottomBar"

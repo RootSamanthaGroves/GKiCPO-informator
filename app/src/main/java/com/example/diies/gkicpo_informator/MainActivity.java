@@ -9,13 +9,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.diies.gkicpo_informator.model.Equipment;
 import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainAktywnosc";
     private SekcjaStatePagerAdapter mSekcjaStatePagerAdapter;
     private ViewPager mViewPager;
-
+public Equipment equipmentG ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

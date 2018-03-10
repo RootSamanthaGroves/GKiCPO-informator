@@ -60,7 +60,7 @@ public class Tab1SzukajPoNazwach extends Fragment {
             @Override
             public void onClick(View view) {
                 idOfEqu = (String) mEdit.getText().toString();
-                Log.d("id", idOfEqu);
+                Log.d("Pobieranie", idOfEqu);
 
                 new HttpRequestTask().execute();
 

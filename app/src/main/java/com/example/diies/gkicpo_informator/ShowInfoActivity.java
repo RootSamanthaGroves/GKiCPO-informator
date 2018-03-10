@@ -1,9 +1,11 @@
 package com.example.diies.gkicpo_informator;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,11 +18,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.diies.gkicpo_informator.model.Equipment;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.ByteArrayOutputStream;
 
 
 /**
@@ -33,7 +38,7 @@ public class ShowInfoActivity extends AppCompatActivity {
     final static String url = "https://app-informacje.herokuapp.com/equipment/name/";
     public static String codeFormat;
     public static String codeContent;
-
+     public static  FileOperation fo;
 
     ProgressDialog progress;
 
@@ -41,7 +46,8 @@ public class ShowInfoActivity extends AppCompatActivity {
     private ImageView ivZdjecie;
     private TextView tvOpis;
     private ImageButton btnTEST;
-
+    public Equipment equipmentToSave;
+    static Bitmap bMap = null;
     private static final String TAG = "Druga aktuwność";
 
     @Override
@@ -50,33 +56,49 @@ public class ShowInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_showinfo);
         Log.d(TAG, "onCreate: Start 2 ");
 
+        Context context = getApplicationContext();
+        Toast toast = Toast.makeText( context, "Trwa pobieranie danych ...", Toast.LENGTH_SHORT);
+        toast.show();
+
         tvNazwa = (TextView) this.findViewById(R.id.tvNazwa);
         tvOpis = (TextView) this.findViewById(R.id.tvOpis);
         tvNazwa.setText(codeContent);
 
-        if(codeContent!= null){
+        if (codeContent != null) {
             selectItem();
         }
         btnTEST = (ImageButton) this.findViewById(R.id.imageButton3);
         btnTEST.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView nazwaToSave = (TextView) findViewById(R.id.tvNazwa);
+                TextView opisToSave = (TextView) findViewById(R.id.tvOpis);
+                ImageView imageEq = (ImageView) findViewById(R.id.ivPhoto);
+                Bitmap bitmap = ((BitmapDrawable) imageEq.getDrawable()).getBitmap();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageInByte = baos.toByteArray();
 
-//                Toast.makeText(getActivity(), "Informacje", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getActivity(), ShowInfoActivity.class);
-//                startActivity(intent);
+                equipmentToSave = new Equipment(nazwaToSave.getText().toString(), opisToSave.getText().toString(),imageInByte );
+//                System.out.println(imageInByte.toString());
+                FileOperation.writeToFile(equipmentToSave,  getBaseContext(), "ulubione.txt", false);
+                FileOperation.writeToFile(equipmentToSave,getBaseContext(),"photo.png", true);
+//                FileOperation.bitmapToFile(bMap,   "photo.txt", true);
+                Context context = getApplicationContext();
+//             fo = new FileOperation(imageInByte);
+
+                Toast toast = Toast.makeText(context, "Dodano do ulubionych", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_ViewBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()) {
-
                     case R.id.ic_back:
                         Intent intent0 = new Intent(ShowInfoActivity.this, MainActivity.class);
                         startActivity(intent0);
@@ -105,25 +127,18 @@ public class ShowInfoActivity extends AppCompatActivity {
                         startActivity(intent5);
                         break;
                 }
-
-
                 return false;
-
             }
 
 
         });
-
     }
 
     public void selectItem() {
-
         tvNazwa.setText(codeContent);
-        System.out.println(codeContent);
+//        System.out.println(codeContent);
         new HttpRequestTask().execute();
-
     }
-
 
     @Override
     public void onStart() {
@@ -136,21 +151,21 @@ public class ShowInfoActivity extends AppCompatActivity {
     }
 
 
+
     private class HttpRequestTask extends AsyncTask<Void, Void, Equipment> {
-        private ProgressDialog pd;
+
+
         @Override
         protected Equipment doInBackground(Void... params) {
             try {
+
 //               progress = ProgressDialog.show();
                 String urlAll = url + tvNazwa.getText().toString();
-                System.out.println("qr code "+tvNazwa.getText().toString());
+              //  System.out.println("qr code " + tvNazwa.getText().toString());
 //             String urlAll = url +"name";
-
-
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 Equipment equipment = (Equipment) restTemplate.getForObject(urlAll, Equipment.class);
-
                 return equipment;
             } catch (Exception e) {
                 Log.e("conection with rest", e.getMessage(), e);
@@ -161,21 +176,19 @@ public class ShowInfoActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Equipment equipment) {
 
-
             TextView nazwa = (TextView) findViewById(R.id.tvNazwa);
             TextView opis = (TextView) findViewById(R.id.tvOpis);
             nazwa.setText(String.valueOf(equipment.getName()));
             opis.setText(String.valueOf(equipment.getDescription()));
             ImageView image = (ImageView) findViewById(R.id.ivPhoto);
-            Bitmap bMap = BitmapFactory.decodeByteArray(equipment.getImage(), 0,equipment.getImage().length);
+
+            byte[] test = equipment.getImage();
+
+            System.out.println("show info activity "+test.length+ " "+ test[0]);
+            bMap = BitmapFactory.decodeByteArray(equipment.getImage(), 0, equipment.getImage().length);
             image.setImageBitmap(bMap);
-
-
-        }
+//            System.out.println(equipment.getImage() + "  -----------------Image z showInfo");
 
         }
-
-
-
-
+    }
 }

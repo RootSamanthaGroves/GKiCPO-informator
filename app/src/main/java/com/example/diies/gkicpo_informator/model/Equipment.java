@@ -25,7 +25,11 @@ public class Equipment {
         this.description = description;
         this.image = image;
     }
+    public Equipment(String name, String description) {
+        this.name = name;
+        this.description = description;
 
+    }
     public long getId() {
         return id;
     }

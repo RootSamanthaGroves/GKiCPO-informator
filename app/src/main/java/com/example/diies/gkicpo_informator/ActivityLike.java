@@ -1,6 +1,7 @@
 package com.example.diies.gkicpo_informator;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.diies.gkicpo_informator.model.Equipment;
+
+import java.io.IOException;
 
 /**
  * Created by DiiES on 2017-11-02.
@@ -25,6 +32,39 @@ public class ActivityLike extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav_ViewBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        TextView tvFileContent = (TextView) findViewById(R.id.tvFromFile);
+        TextView tvDescriptionContent = (TextView) findViewById(R.id.tvOpis);
+        Equipment equipmentFromFile = FileOperation.readFromFile(getBaseContext(), "ulubione.txt");
+        tvFileContent.setText(equipmentFromFile.getName());
+        tvDescriptionContent.setText(equipmentFromFile.getDescription());
+
+
+        Bitmap bitmap = null;
+        try {
+            bitmap = FileOperation.readPhotoFromFile(getBaseContext(),"test.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        equipmentFromFile.setImage(imageFromFile);
+//        Bitmap bitmap =  BitmapFactory.decodeByteArray(equipmentFromFile.getImage(), 0, equipmentFromFile.getImage().length);
+
+        ImageView image = (ImageView) findViewById(R.id.ivPhotoEq);
+        image.setImageBitmap(bitmap);
+
+//        if(bMap==null){
+//            System.out.println(bMap==null);
+//        }else{
+//            image.setImageBitmap(bMap);
+//        }
+//        System.out.println(bMap.getByteCount());
+
+
+
+
+
+
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -70,4 +110,6 @@ public class ActivityLike extends AppCompatActivity {
         });
 
     }
+
+
 }
