@@ -109,10 +109,6 @@ public class Tab1SzukajPoNazwach extends Fragment {
         @Override
         protected void onPostExecute(List<Equipment> equipments) {
 
-//            if (equipments.get(0).getName() == null) {
-//                greetingIdText.setText("null");
-//            }
-//            greetingIdText.setText(String.valueOf(equipments.get(0).getName()));
 
 
             lvLanguages.setAdapter(new ArrayAdapter<Equipment>(

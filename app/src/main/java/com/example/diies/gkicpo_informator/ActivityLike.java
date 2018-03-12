@@ -23,7 +23,7 @@ import java.io.IOException;
 public class ActivityLike extends AppCompatActivity {
 
     private static final String TAG = "Ulubione";
-
+    static Equipment  equipmentFromFile ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class ActivityLike extends AppCompatActivity {
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         TextView tvFileContent = (TextView) findViewById(R.id.tvFromFile);
         TextView tvDescriptionContent = (TextView) findViewById(R.id.tvOpis);
-        Equipment equipmentFromFile = FileOperation.readFromFile(getBaseContext(), "ulubione.txt");
+         equipmentFromFile = FileOperation.readFromFile(getBaseContext(), "ulubione.txt");
         tvFileContent.setText(equipmentFromFile.getName());
         tvDescriptionContent.setText(equipmentFromFile.getDescription());
 
@@ -46,24 +46,8 @@ public class ActivityLike extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        equipmentFromFile.setImage(imageFromFile);
-//        Bitmap bitmap =  BitmapFactory.decodeByteArray(equipmentFromFile.getImage(), 0, equipmentFromFile.getImage().length);
-
         ImageView image = (ImageView) findViewById(R.id.ivPhotoEq);
         image.setImageBitmap(bitmap);
-
-//        if(bMap==null){
-//            System.out.println(bMap==null);
-//        }else{
-//            image.setImageBitmap(bMap);
-//        }
-//        System.out.println(bMap.getByteCount());
-
-
-
-
-
-
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -100,16 +84,8 @@ public class ActivityLike extends AppCompatActivity {
                         startActivity(intent5);
                         break;
                 }
-
-
                 return false;
-
             }
-
-
         });
-
     }
-
-
 }
